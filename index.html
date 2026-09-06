@@ -1,10 +1,657 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-    <title>Hoş Geldiniz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serdar Bayar | Software Engineer & Mobile Developer</title>
+    <meta name="description" content="Serdar Bayar - Android ve Mobil Yazılım Geliştirici Kişisel Web Sitesi ve Ürün Portföyü">
+    <!-- Google Fonts & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-primary: #0a0d14;
+            --bg-secondary: #121824;
+            --card-bg: #182030;
+            --card-border: #232d42;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.35);
+            --accent-light: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Container & Grid */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 13, 20, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 7rem 0 5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, rgba(10,13,20,0) 70%);
+            z-index: -1;
+            filter: blur(40px);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(37, 99, 235, 0.15);
+            color: var(--accent-light);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.25rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.25rem;
+            line-height: 1.15;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            color: var(--text-muted);
+            font-size: 1.15rem;
+        }
+
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.75rem 1.6rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--card-border);
+            transform: translateY(-2px);
+        }
+
+        /* Section Global */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Products Section */
+        .featured-product {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 3.5rem 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-product::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #38bdf8, #2563eb);
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .product-meta-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .product-tag {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .feature-item i {
+            color: var(--accent-light);
+            margin-top: 3px;
+        }
+
+        .feature-item div h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .feature-item div p {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+        }
+
+        /* Mockup Grid Preview */
+        .app-mockups {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            position: relative;
+        }
+
+        .mockup-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .mockup-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-light);
+        }
+
+        .mockup-icon-wrap {
+            width: 44px;
+            height: 44px;
+            margin: 0 auto 0.75rem;
+            border-radius: 10px;
+            background: rgba(37, 99, 235, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-light);
+        }
+
+        .mockup-card h5 {
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .mockup-card span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Future Products Section */
+        .upcoming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .upcoming-card {
+            background: var(--card-bg);
+            border: 1px dashed var(--card-border);
+            border-radius: 16px;
+            padding: 2.2rem 1.8rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 220px;
+        }
+
+        .upcoming-card i {
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .tech-badge {
+            background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 3.5rem 0 2.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background: var(--bg-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .product-layout, .about-card {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .featured-product {
+                padding: 2rem 1.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Merhaba! Ben Serdar Bayar</h1>
-    <p>GitHub Pages ile oluşturulmuş web sitem.</p>
+
+    <!-- Header Navigation -->
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <i data-lucide="terminal"></i>
+                Serdar<span>Bayar</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#products">Ürünler</a></li>
+                <li><a href="#mapsteps">MapSteps</a></li>
+                <li><a href="#about">Hakkımda</a></li>
+                <li><a href="#contact">İletişim & Destek</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="badge">
+                <i data-lucide="sparkles" size="16"></i> Mobil & Mühendislik Çözümleri
+            </div>
+            <h1>Yüksek Performanslı ve <br><span>Kullanıcı Odaklı</span> Mobil Uygulamalar</h1>
+            <p>
+                Konum tabanlı hassas GPS algoritmalarından ölçeklenebilir modern mobil mimarilere uzanan yazılım geliştirme projelerim.
+            </p>
+            <div class="cta-group">
+                <a href="https://play.google.com/store/apps/details?id=com.serdarbayar.adimsayar" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <i data-lucide="play" size="18"></i> MapSteps Google Play'de
+                </a>
+                <a href="mailto:sbayar1968@gmail.com?subject=Geliştirici%20İletişim" class="btn btn-secondary">
+                    <i data-lucide="mail" size="18"></i> İletişime Geç
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ürünler & Projeler</h2>
+                <p>Aktif olarak geliştirilen ve yakında yayınlanacak mobil yazılım çözümleri.</p>
+            </div>
+
+            <!-- Featured Product: MapSteps -->
+            <div class="featured-product" id="mapsteps">
+                <div class="product-layout">
+                    <div>
+                        <div class="product-meta-header">
+                            <span class="product-tag">Yayında</span>
+                            <span style="color: var(--text-muted); font-size: 0.85rem;">Android / Google Play</span>
+                        </div>
+                        <h3 class="product-title">MapSteps (Walking)</h3>
+                        <p class="product-desc">
+                            Yürüyüş ve doğa tutkunları için geliştirilmiş; GPS sensör füzyonu, gelişmiş rota takibi, GPX yönetimi ve yürüyüş anılarını harita videosuna dönüştüren kapsamlı aktivite takipçisi.
+                        </p>
+
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <i data-lucide="navigation" size="20"></i>
+                                <div>
+                                    <h4>Hassas GPS & Hareket Takibi</h4>
+                                    <p>Gelişmiş mola ve hareket sensör algoritmaları ile tam doğruluk.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i data-lucide="route" size="20"></i>
+                                <div>
+                                    <h4>GPX İçe / Dışa Aktarma</h4>
+                                    <p>Herhangi bir rotayı GPX ile yükleyip canlı rehberlikle yürüme imkânı.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i data-lucide="video" size="20"></i>
+                                <div>
+                                    <h4>Harita Video Hikayeleri</h4>
+                                    <p>Yürüyüşü müzik ve fotoğraflarla animasyonlu videoya dönüştürme.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i data-lucide="bar-chart-3" size="20"></i>
+                                <div>
+                                    <h4>Detaylı Performans Analizi</h4>
+                                    <p>Günlük, haftalık, aylık ve yıllık adım/kalori/hız grafikleri.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i data-lucide="globe" size="20"></i>
+                                <div>
+                                    <h4>5 Farklı Dil Desteği</h4>
+                                    <p>Global standartlarda yerelleştirilmiş arayüz ve birim yönetimi.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i data-lucide="camera" size="20"></i>
+                                <div>
+                                    <h4>Rota Üzerinde Fotoğraflar</h4>
+                                    <p>Konum etiketli fotoğrafları yürüyüş rotasıyla senkronize kaydetme.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                            <a href="https://play.google.com/store/apps/details?id=com.serdarbayar.adimsayar" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                                <i data-lucide="play" size="18"></i> Google Play'den İndir
+                            </a>
+                            <a href="mailto:sbayar1968@gmail.com?subject=MapSteps%20Destek%20ve%20Geri%20Bildirim" class="btn btn-secondary">
+                                <i data-lucide="message-square" size="18"></i> Destek & Geri Bildirim
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- App Highlights Preview Cards -->
+                    <div class="app-mockups">
+                        <div class="mockup-card">
+                            <div class="mockup-icon-wrap">
+                                <i data-lucide="activity" size="22"></i>
+                            </div>
+                            <h5>Canlı Metrikler</h5>
+                            <span>Hız, mesafe, irtifa ve kalori tüketimi anlık monitör edilir.</span>
+                        </div>
+                        <div class="mockup-card">
+                            <div class="mockup-icon-wrap">
+                                <i data-lucide="history" size="22"></i>
+                            </div>
+                            <h5>Aktivite Geçmişi</h5>
+                            <span>Tüm yürüyüşlerin detaylı geçmişi cihazda güvenle saklanır.</span>
+                        </div>
+                        <div class="mockup-card">
+                            <div class="mockup-icon-wrap">
+                                <i data-lucide="crown" size="22"></i>
+                            </div>
+                            <h5>MapSteps Premium</h5>
+                            <span>Sınırsız video oluşturma ve gelişmiş GPX rota navigasyonu.</span>
+                        </div>
+                        <div class="mockup-card">
+                            <div class="mockup-icon-wrap">
+                                <i data-lucide="target" size="22"></i>
+                            </div>
+                            <h5>Günlük Hedefler</h5>
+                            <span>Kişiselleştirilmiş hedef adım takibi ve motivasyon grafikleri.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Future Products Section -->
+            <div class="section-header" style="margin-bottom: 2rem; margin-top: 4.5rem;">
+                <h3 style="font-size: 1.6rem;">Gelecek Projeler</h3>
+                <p>Geliştirme aşamasındaki yeni mobil uygulamalar ve açık kaynak araçlar bu bölüme eklenecektir.</p>
+            </div>
+
+            <div class="upcoming-grid">
+                <!-- Yeni ürün eklendiğinde bu kart çoğaltılarak düzenlenebilir -->
+                <div class="upcoming-card">
+                    <i data-lucide="plus-circle" size="36"></i>
+                    <h4 style="margin-bottom: 6px;">Yeni Mobil Proje</h4>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">
+                        Geliştirme aşamasında olan yeni Android projesi yakında burada duyurulacaktır.
+                    </p>
+                </div>
+                <div class="upcoming-card">
+                    <i data-lucide="code-2" size="36"></i>
+                    <h4 style="margin-bottom: 6px;">Mühendislik & Otomasyon Araçları</h4>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">
+                        Teknik veri işleme, çeviri otomasyonları ve mühendislik çözümleri.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-card">
+                <div>
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Geliştirici Hakkında</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                        Merhaba, ben <strong>Serdar Bayar</strong>. Mühendislik tecrübemi modern mobil yazılım teknolojileriyle harmanlayarak kullanıcı deneyimi yüksek, güvenilir ve algoritma odaklı çözümler geliştiriyorum.
+                    </p>
+                    <p style="color: var(--text-muted);">
+                        Özellikle sensör füzyonu, konum tabanlı servisler (LBS), rota/adım algoritmaları ve Android ekosisteminde yerel (native) performans optimizasyonlarına odaklanıyorum.
+                    </p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 0.75rem; font-size: 1.1rem;">Teknoloji & Yetkinlikler</h4>
+                    <div class="tech-tags">
+                        <span class="tech-badge">Android Development</span>
+                        <span class="tech-badge">Kotlin</span>
+                        <span class="tech-badge">GPS & Geolocation</span>
+                        <span class="tech-badge">Sensor Fusion Algorithms</span>
+                        <span class="tech-badge">GPX & Route Engine</span>
+                        <span class="tech-badge">MapLibre / MapTiler</span>
+                        <span class="tech-badge">Mobile Video Synthesis</span>
+                        <span class="tech-badge">Python</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact">
+        <div class="container">
+            <h3 style="margin-bottom: 0.75rem; color: var(--text-main); font-size: 1.75rem;">Destek & İletişim</h3>
+            <p style="margin-bottom: 1.75rem; max-width: 550px; margin-left: auto; margin-right: auto;">
+                MapSteps veya diğer projeler hakkında her türlü geri bildirim, hata bildirimi, öneri ve iş birliği talepleriniz için doğrudan iletişime geçebilirsiniz.
+            </p>
+            <div style="margin-bottom: 2.5rem;">
+                <a href="mailto:sbayar1968@gmail.com?subject=MapSteps%20Destek%20ve%20Geri%20Bildirim" class="btn btn-primary" style="font-size: 1rem; padding: 0.85rem 2rem;">
+                    <i data-lucide="mail" size="20"></i> sbayar1968@gmail.com
+                </a>
+            </div>
+            <p style="color: #64748b; font-size: 0.85rem;">&copy; 2026 Serdar Bayar. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
